@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Songoku vs Vegeta</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">Songoku</h1>
+            <img src="./img/imgSgk/sgk.jpg" alt="" style="height: 500px; width: 100%">
+
+            <div class="healthbar mt-8">
+                <div class="healthbar text-center" style="background-color: red; margin: 0; color: white;" :style="{ width:playerHealthSgk +'%'}">
+                    {{ playerHealthSgk }}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">Vegeta</h1>
+            <img src="./img/imgvgt/vgt.png" alt="" style="height: 500px; width: 100%">
+            
+            <div class="healthbar mt-8">
+                <div class="healthbar text-center" style="background-color: red; margin: 0; color: white;" :style="{ width:playerHealthVgt +'%'}">
+                    {{ playerHealthVgt }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameIsRunning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startNewGame">BẮT ĐẦU </button>
+        </div>
+    </section>
+    <section class="row controls" v-else="">
+        <div class="small-12 columns">
+            <button id="attack" @click="attack" title="Sát thương ngẫu nhiên">TẤN CÔNG</button>
+            <button id="special-attack" @click="attackSpecial" title="Dùng kỹ năng -20hp đối thủ ">KỸ NĂNG</button>
+            <button id="heal" @click="healing" title="Hồi máu ngẫu nhiên">HỒI MÁU</button>
+            <button id="give-up" @click="giveUp">NHẬN THUA</button>
+        </div>
+    </section>
+    <section class="row log">
+        <div class="small-12 columns displayFlex ">
+            <ul>
+                <li>
+                    <span> Lượt </span>
+                </li>
+                <li v-for="i in Stt">
+                    {{ i.textLog }} 
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span> Songoku </span>
+                </li>
+                <li v-for="dameTurnSgk in turnsSgk">
+                    {{ dameTurnSgk.textLog }} 
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span> Vegeta </span>
+                </li>
+                <li v-for="dameTurnVgt in turnsVgt">
+                    {{ dameTurnVgt.textLog }} 
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="./js/app.js"></script>
+</body>
+</html>
